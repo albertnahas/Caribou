@@ -59,10 +59,14 @@ export const Finder = () => {
         themes,
       },
     })
+  const clearFilters = () =>
+    dispatch({
+      type: FilterActionType.CLEAR,
+    })
 
   return (
     <Container sx={{ mb: 4 }}>
-      <Typography sx={{ my: 3, fontSize: '4em' }} variant="h1">
+      <Typography sx={{ my: 3, fontSize: "4em" }} variant="h1">
         Caribou
         <img width="60" style={{ marginLeft: 20 }} src={logo} />
       </Typography>
@@ -72,6 +76,7 @@ export const Finder = () => {
         setRegion={setRegion}
         setWeather={setWeather}
         setThemes={setThemes}
+        clearFilters={clearFilters}
       />
       {!isLoading ? (
         <Grid spacing={2} container>

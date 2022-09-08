@@ -1,15 +1,14 @@
 import * as React from "react"
-import Button from "@mui/material/Button"
-import { apiBaseUrl } from "./helpers"
 import { Providers } from "./Providers"
 import { Finder } from "./components/Finder/Finder"
+import { Landing } from "./components/Landing/Landing"
 
 function App() {
-  console.log(apiBaseUrl())
+  const [started, setStarted] = React.useState(false)
 
   return (
     <Providers>
-      <Finder />
+      {started ? <Finder /> : <Landing onStart={() => setStarted(true)} />}
     </Providers>
   )
 }

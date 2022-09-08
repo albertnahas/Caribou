@@ -63,13 +63,13 @@ export const FilterReducer = (
 ): FilterState => {
     switch (action.type) {
         case FilterActionType.UPDATE_REGION:
-            return { ...state, region: action.payload.region }
+            return { ...state, page: 0, region: action.payload.region }
         case FilterActionType.UPDATE_MONTH:
-            return { ...state, month: action.payload.month }
+            return { ...state, page: 0, month: action.payload.month }
         case FilterActionType.UPDATE_THEMES:
-            return { ...state, themes: action.payload.themes }
+            return { ...state, page: 0, themes: action.payload.themes }
         case FilterActionType.UPDATE_WEATHER:
-            return { ...state, weather: action.payload.weather }
+            return { ...state, page: 0, weather: action.payload.weather }
         case FilterActionType.UPDATE_PAGE:
             return { ...state, page: action.payload.page }
         case FilterActionType.CLEAR:

@@ -26,6 +26,7 @@ export const Filter: FC<Props> = ({
   setRegion,
   setWeather,
   setThemes,
+  clearFilters,
 }) => {
   const { month, region, themes, weather } = filterState
   const [showFilter, setShowFilter] = React.useState(true)
@@ -39,31 +40,6 @@ export const Filter: FC<Props> = ({
       />
       {showFilter && (
         <Grid sx={{ my: 1 }} spacing={2} container>
-          <Grid item xs={4}>
-            <FormControl fullWidth sx={{ minWidth: 80 }}>
-              <InputLabel sx={{ zIndex: 0 }} id="month-select-label">
-                Month
-              </InputLabel>
-              <Select
-                labelId="month-select-label"
-                id="month-select"
-                value={month}
-                onChange={(e) => {
-                  setMonth(e.target.value)
-                }}
-                label="Month"
-              >
-                <MenuItem value="all">
-                  <em>All</em>
-                </MenuItem>
-                {monthNames.map((c) => (
-                  <MenuItem value={c} key={c}>
-                    {c}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth sx={{ minWidth: 80 }}>
               <InputLabel sx={{ zIndex: 0 }} id="region-select-label">
@@ -84,6 +60,31 @@ export const Filter: FC<Props> = ({
                 {continents.map((m) => (
                   <MenuItem value={m} key={m}>
                     {m}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl fullWidth sx={{ minWidth: 80 }}>
+              <InputLabel sx={{ zIndex: 0 }} id="month-select-label">
+                Month
+              </InputLabel>
+              <Select
+                labelId="month-select-label"
+                id="month-select"
+                value={month}
+                onChange={(e) => {
+                  setMonth(e.target.value)
+                }}
+                label="Month"
+              >
+                <MenuItem value="all">
+                  <em>All</em>
+                </MenuItem>
+                {monthNames.map((c) => (
+                  <MenuItem value={c} key={c}>
+                    {c}
                   </MenuItem>
                 ))}
               </Select>
@@ -117,15 +118,20 @@ export const Filter: FC<Props> = ({
         </Grid>
       )}
       <Grid sx={{ my: 1 }} container>
-        <Grid
-          sx={{ alignItems: "center", display: "flex" }}
-          item
-          xs={8}
-          md={10}
-        >
+        <Grid sx={{ alignItems: "center", display: "flex" }} item xs={6} md={9}>
           <Divider sx={{ flexGrow: 1 }} />
         </Grid>
-        <Grid item md={2} xs={4}>
+        <Grid item md={3} xs={6}>
+          <Button
+            variant="text"
+            color="secondary"
+            onClick={() => {
+              clearFilters()
+            }}
+            sx={{ mr: 1 }}
+          >
+            Clear Filters
+          </Button>
           <Button
             variant="text"
             color="primary"
@@ -148,4 +154,5 @@ interface Props {
   setRegion: (region?: string) => void
   setWeather: (weather?: string[]) => void
   setThemes: (themes?: string[]) => void
+  clearFilters: () => void
 }
