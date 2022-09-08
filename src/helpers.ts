@@ -14,7 +14,7 @@ export const getPhoto = (name?: string) => {
 }
 
 export const apiBaseUrl = () =>
-    env === 'dev' ? 'http://127.0.0.1:5000/' : 'http://caribou-api.herokuapp.com/';
+    env !== 'prod' ? 'http://127.0.0.1:5000/' : 'http://caribou-api.herokuapp.com/';
 
 export const getApiUrl = (path: string, queryParams?: any) => {
     const queryString = qs.stringify(queryParams, { arrayFormat: 'comma' })
