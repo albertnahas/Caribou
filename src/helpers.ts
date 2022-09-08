@@ -1,5 +1,5 @@
 import * as qs from 'query-string'
-const env = 'prod'
+const env = 'dev'
 
 export const wikipediaThumbnailURL =
     "https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&formatversion=2&prop=pageimages|pageterms&piprop=thumbnail&pithumbsize=600&titles="
@@ -14,7 +14,8 @@ export const getPhoto = (name?: string) => {
 }
 
 export const apiBaseUrl = () =>
-    env !== 'prod' ? 'http://127.0.0.1:5000/' : 'http://caribou-api.herokuapp.com/';
+    // 'http://127.0.0.1:5000/' // local
+    'https://caribou-api.herokuapp.com/' // heroku
 
 export const getApiUrl = (path: string, queryParams?: any) => {
     const queryString = qs.stringify(queryParams, { arrayFormat: 'comma' })
