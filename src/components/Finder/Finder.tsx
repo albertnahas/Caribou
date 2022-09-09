@@ -65,44 +65,84 @@ export const Finder = () => {
     })
 
   return (
-    <Container sx={{ mb: 4 }}>
-      <Typography sx={{ my: 3, fontSize: "4em" }} variant="h1">
-        Caribou
-        <img width="60" style={{ marginLeft: 20 }} src={logo} />
-      </Typography>
-      <Filter
-        filterState={filterState}
-        setMonth={setMonth}
-        setRegion={setRegion}
-        setWeather={setWeather}
-        setThemes={setThemes}
-        clearFilters={clearFilters}
-      />
-      {!isLoading ? (
-        <Grid spacing={2} container>
-          {data?.map((dest) => (
-            <Grid md={4} xs={12} item>
-              <CityCard city={dest} />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <Box sx={{ textAlign: "center", my: 8 }}>
-          <CircularProgress />
+    <>
+      <Box
+        sx={{
+          mb: 6,
+          backgroundRepeat: "no-repeat !important",
+          backgroundSize: "cover !important",
+          backgroundPosition: {
+            md: "0 -154px !important",
+            xs: "center !important",
+          },
+          background: `url(https://static.cityoneholidays.com/digital-asset/20220620045050_Pb_GreeceBanner.jpg)`,
+        }}
+      >
+        <Box
+          sx={{
+            background: "rgba(0, 0, 0, 0.5)",
+            width: "100%",
+            py: 1,
+            px: 4,
+            pt: {
+              md: 1,
+              xs: 4,
+            },
+            height: 200,
+          }}
+        >
+          <Typography
+            sx={{ my: 3, fontSize: "4em", mt: 0, color: "#8feaff" }}
+            variant="h1"
+          >
+            Caribou
+            <img
+              width="60"
+              style={{ marginLeft: 20, marginTop: 5 }}
+              src={logo}
+            />
+          </Typography>
         </Box>
-      )}
-      <Stack direction="row" sx={{ my: 3, justifyContent: "center" }}>
-        {!!filterState.page && (
-          <Button onClick={() => setPage((filterState.page || 0) - 1)}>
-            Prev
-          </Button>
+      </Box>
+      <Container>
+        <Filter
+          filterState={filterState}
+          setMonth={setMonth}
+          setRegion={setRegion}
+          setWeather={setWeather}
+          setThemes={setThemes}
+          clearFilters={clearFilters}
+        />
+        {!isLoading ? (
+          <Grid spacing={2} container>
+            {data?.map((dest) => (
+              <Grid md={4} xs={12} item>
+                <CityCard city={dest} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Box sx={{ textAlign: "center", my: 8 }}>
+            <CircularProgress />
+          </Box>
         )}
-        {data?.length == 10 && (
-          <Button onClick={() => setPage((filterState.page || 0) + 1)}>
-            Next
-          </Button>
-        )}
-      </Stack>
-    </Container>
+        <Stack direction="row" sx={{ my: 4, justifyContent: "center" }}>
+          {!!filterState.page && (
+            <Button onClick={() => setPage((filterState.page || 0) - 1)}>
+              Prev
+            </Button>
+          )}
+          {data?.length == 10 && (
+            <Button onClick={() => setPage((filterState.page || 0) + 1)}>
+              Next
+            </Button>
+          )}
+        </Stack>
+
+        <Box sx={{ textAlign: "center", p: 4 }}>
+          © 2022 Copyright by Albert Nahas. All Rights Reserved.{" "}
+        </Box>
+      </Container>
+    </>
   )
 }

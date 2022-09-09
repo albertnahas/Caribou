@@ -14,8 +14,8 @@ export const getPhoto = (name?: string) => {
 }
 
 export const apiBaseUrl = () =>
-    // 'http://127.0.0.1:5000/' // local
-    'https://caribou-api.herokuapp.com/' // heroku
+    'http://127.0.0.1:5000/' // local
+// 'https://caribou-api.herokuapp.com/' // heroku
 
 export const getApiUrl = (path: string, queryParams?: any) => {
     const queryString = qs.stringify(queryParams, { arrayFormat: 'comma' })
